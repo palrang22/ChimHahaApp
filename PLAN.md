@@ -25,18 +25,18 @@ After finishing a step, Claude Code will check off items and summarize what was 
 ## Step 2 — Domain Models + Network Layer
 > Goal: A working URLSession + Combine API client that talks to JSONPlaceholder.
 
-- [ ] `Post.swift` — `Codable`, `Equatable`, `Identifiable`
-- [ ] `Comment.swift` — same
-- [ ] `User.swift` — same
-- [ ] `Board.swift` — board model with `viewType` enum (`.list`, `.grid`, `.wish`)
-- [ ] `NetworkError.swift` — custom error enum
-- [ ] `Endpoint.swift` — enum with cases for each API route
-- [ ] `APIClient.swift` — `URLSession.shared.dataTaskPublisher` + `decode` + `eraseToAnyPublisher`
-- [ ] `PostRepository.swift` — protocol (fetchPosts, fetchPost, fetchComments)
-- [ ] `PostRepositoryImpl.swift` — concrete implementation using `APIClient`
-- [ ] `APIClientTests.swift` — mock tests for network layer
+- [x] `Post.swift` — `Codable`, `Equatable`, `Identifiable`
+- [x] `Comment.swift` — same (+ `parentId: String?` for 대댓글)
+- [x] `User.swift` — same
+- [x] `Board.swift` — board model with `viewType` enum + static board data
+- [x] `NetworkError.swift` — custom error enum
+- [x] `Endpoint.swift` — enum with cases for each API route
+- [x] `APIClient.swift` — `URLSession.shared.data(for:)` + `async/await` + `decode`
+- [x] `PostRepository.swift` — protocol (fetchPosts, fetchPost, fetchComments)
+- [x] `PostRepositoryImpl.swift` — concrete implementation using `APIClient`
+- [x] `APIClientTests.swift` — mock tests for network layer
 
-**You'll learn:** `Codable`, `Combine` fundamentals, `dataTaskPublisher`, `decode`, `eraseToAnyPublisher`, protocol-based DI
+**You'll learn:** `Codable`, `URLSession` async/await, `data(for:)`, `JSONDecoder`, protocol-based DI
 
 ---
 
@@ -73,7 +73,7 @@ After finishing a step, Claude Code will check off items and summarize what was 
 - [ ] Empty/error state
 - [ ] `HomeReducerTests.swift`
 
-**You'll learn:** `List`, `LazyVStack`, `.listStyle`, `AsyncImage`, TCA `Effect.publisher`, `@ObservableState`
+**You'll learn:** `List`, `LazyVStack`, `.listStyle`, `AsyncImage`, TCA `Effect.run`, `@ObservableState`
 
 ---
 
@@ -142,10 +142,10 @@ After finishing a step, Claude Code will check off items and summarize what was 
   - Board filter chips (horizontal scroll)
   - Results list using `PostRowView`
   - Empty state and no-results state
-- [ ] Combine `debounce(for: .milliseconds(300))` to throttle search
+- [ ] `.debounce(id:for:clock:)` in TCA Effect to throttle search requests
 - [ ] `SearchReducerTests.swift`
 
-**You'll learn:** Combine `debounce`, `removeDuplicates`, TCA search patterns, `FocusState`
+**You'll learn:** TCA `.debounce`, `Effect.run`, TCA search patterns, `FocusState`
 
 ---
 
