@@ -25,10 +25,10 @@ After finishing a step, Claude Code will check off items and summarize what was 
 ## Step 2 — Domain Models + Network Layer
 > Goal: A working URLSession + Combine API client that talks to JSONPlaceholder.
 
-- [ ] `Post.swift` — `Codable`, `Equatable`, `Identifiable`
-- [ ] `Comment.swift` — same
-- [ ] `User.swift` — same
-- [ ] `Board.swift` — board model with `viewType` enum (`.list`, `.grid`, `.wish`)
+- [x] `Post.swift` — `Codable`, `Equatable`, `Identifiable`
+- [x] `Comment.swift` — same (+ `parentId: String?` for 대댓글)
+- [x] `User.swift` — same
+- [x] `Board.swift` — board model with `viewType` enum + static board data
 - [ ] `NetworkError.swift` — custom error enum
 - [ ] `Endpoint.swift` — enum with cases for each API route
 - [ ] `APIClient.swift` — `URLSession.shared.dataTaskPublisher` + `decode` + `eraseToAnyPublisher`
