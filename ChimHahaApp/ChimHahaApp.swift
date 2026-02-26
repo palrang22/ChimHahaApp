@@ -7,16 +7,15 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 @main
 struct ChimhahaApp: App {
     var body: some Scene {
         WindowGroup {
-            Text("침하하")
-                .font(.chimTitle1)
-                .foregroundStyle(Color("chimPrimary"))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color("chimBG"))
-                .ignoresSafeArea()
+            AppView(store: Store(initialState: AppReducer.State()) {
+                AppReducer()
+            })
         }
     }
 }
