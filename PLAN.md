@@ -43,13 +43,13 @@ After finishing a step, Claude Code will check off items and summarize what was 
 ## Step 3 — App Shell + Tab Bar
 > Goal: The root tab bar is working and each tab shows a placeholder screen.
 
-- [ ] `AppReducer.swift` — root reducer with `selectedTab` state + tab `Action`
-- [ ] `AppView.swift` — `TabView` with 4 tabs: Home, Search, Write, My Page
-- [ ] Tab bar icons use SF Symbols: `house`, `magnifyingglass`, `pencil`, `person`
-- [ ] Active tab color: `chimPrimary`
-- [ ] Each tab shows a simple placeholder `Text("...")` view for now
+- [x] `AppReducer.swift` — root reducer with `selectedTab` state + tab `Action`
+- [x] `AppView.swift` — `TabView` with 4 tabs: Home, Search, Write, My Page
+- [x] Tab bar icons use SF Symbols: `house`, `magnifyingglass`, `pencil`, `person`
+- [x] Active tab color: `chimPrimary`
+- [x] Each tab shows a simple placeholder `Text("...")` view for now
 
-**You'll learn:** `TabView`, `tabItem`, `.tint`, basic TCA store wiring in `@main`
+**You'll learn:** `TabView`, `Tab(title:systemImage:value:content:)`, `.tint`, basic TCA store wiring in `@main`
 
 ---
 
