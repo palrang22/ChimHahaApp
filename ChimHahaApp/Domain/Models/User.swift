@@ -9,7 +9,7 @@ import Foundation
 
 
 struct User: Codable, Equatable, Identifiable {
-    let id: Int
+    let id: String
     let name: String
     let email: String
     let imageURL: String?

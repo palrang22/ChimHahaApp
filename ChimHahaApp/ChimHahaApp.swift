@@ -16,6 +16,7 @@ struct ChimhahaApp: App {
             AppView(store: Store(initialState: AppReducer.State()) {
                 AppReducer()
             })
+            .preferredColorScheme(.dark)
         }
     }
 }

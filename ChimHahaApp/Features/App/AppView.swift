@@ -16,7 +16,7 @@ struct AppView: View {
     var body: some View {
         TabView(selection: $store.selectedTab.sending(\.tabSelected)) {
             Tab("홈", systemImage: "house", value: AppReducer.Tab.home) {
-                Text("홈")
+                HomeView(store: store.scope(state: \.home, action: \.home))
             }
             
             Tab("검색", systemImage: "magnifyingglass", value: AppReducer.Tab.search) {

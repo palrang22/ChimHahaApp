@@ -17,10 +17,12 @@ struct AppReducer {
     @ObservableState
     struct State: Equatable {
         var selectedTab: Tab = .home
+        var home: HomeReducer.State = HomeReducer.State()
     }
     
     enum Action {
         case tabSelected(Tab)
+        case home(HomeReducer.Action)
     }
     
     var body: some ReducerOf<Self> {
@@ -28,6 +30,8 @@ struct AppReducer {
             switch action {
             case let .tabSelected(tab):
                 state.selectedTab = tab
+                return .none
+            case .home:
                 return .none
             }
         }
