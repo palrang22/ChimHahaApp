@@ -12,22 +12,22 @@ struct PostRowView: View {
     let post: Post
     
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
+        HStack(alignment: .center, spacing: 12) {
             VStack(alignment: .leading, spacing: 6) {
                 Text(post.title)
                     .font(.chimBody)
                     .foregroundStyle(.chimLabel)
                     .lineLimit(2)
                 
-                HStack(spacing: 6) {
+                HStack(spacing: 12) {
                     Text(post.name)
                         .font(.chimCaption)
                         .foregroundStyle(.chimLabel2)
                     
                     if let likeCount = post.likeCount {
-                        Label("\(likeCount)", systemImage: "heart")
+                        Label("\(likeCount)", systemImage: "hand.thumbsup")
                             .font(.chimCaption)
-                            .foregroundStyle(.chimLabel2)
+                            .foregroundStyle(.chimLabel)
                     }
                     
                     if let commentCount = post.commentCount, commentCount > 0 {
@@ -54,6 +54,45 @@ struct PostRowView: View {
             }
         }
         .padding(.horizontal, 16)
-        .padding(.vertical, 12)
+        .padding(.vertical, 20)
     }
+}
+
+#Preview {
+    VStack(spacing: 0) {
+        // 썸네일 있는 경우
+        PostRowView(post: Post(
+            id: "1",
+            userId: "1",
+            name: "Terry Medhurst",
+            title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+            body: "quia et suscipit suscipit recusandae consequuntur expedita",
+            imageURL: URL(string: "https://picsum.photos/seed/1/400/300"),
+            tags: ["침착맨"],
+            viewCount: 305,
+            likeCount: 192,
+            dislikeCount: 25,
+            commentCount: 9,
+            scrapCount: nil,
+            createdAt: "3시간 전"
+        ))
+        Divider()
+        // 썸네일 없는 경우
+        PostRowView(post: Post(
+            id: "3",
+            userId: "3",
+            name: "김철수",
+            title: "썸네일 없는 게시글 제목입니다",
+            body: "본문 내용",
+            imageURL: nil,
+            tags: nil,
+            viewCount: nil,
+            likeCount: 36,
+            dislikeCount: nil,
+            commentCount: 10,
+            scrapCount: nil,
+            createdAt: "방금 전"
+        ))
+    }
+    .background(Color("chimBG"))
 }

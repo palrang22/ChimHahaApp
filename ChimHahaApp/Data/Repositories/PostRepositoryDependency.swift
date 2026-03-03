@@ -9,13 +9,22 @@ import ComposableArchitecture
 
 
 private enum PostRepositoryKey: DependencyKey {
-    static let liveValue: any PostRepository = PostRepositoryImpl()
+    static let liveValue: PostRepository = PostRepositoryImpl()
+}
+
+private enum CommentRepositoryKey: DependencyKey {
+    static let liveValue: CommentRepository = CommentRepositoryImpl()
 }
 
 
 extension DependencyValues {
-    var postRepository: any PostRepository {
+    var postRepository: PostRepository {
         get { self[PostRepositoryKey.self] }
         set { self[PostRepositoryKey.self] = newValue }
+    }
+    
+    var commentRepository: CommentRepository {
+        get { self[CommentRepositoryKey.self] }
+        set { self[CommentRepositoryKey.self] = newValue }
     }
 }

@@ -8,5 +8,4 @@
 protocol PostRepository: Sendable {
     func fetchPosts() async throws -> [Post]
     func fetchPost(id: String) async throws -> Post
-    func fetchComments(postId: String) async throws -> [Comment]
 }

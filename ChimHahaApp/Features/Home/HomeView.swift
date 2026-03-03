@@ -47,7 +47,7 @@ struct HomeView: View {
                         
                     } label: {
                         HStack(spacing: 4) {
-                            Text(store.selectedBoard.name)
+                            Text("\(store.selectedBoard.emoji) \(store.selectedBoard.name)")
                                 .font(.chimBodySB)
                                 .foregroundStyle(.chimLabel)
                             Image(systemName: "chevron.down")

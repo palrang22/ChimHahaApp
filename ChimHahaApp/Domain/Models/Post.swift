@@ -48,7 +48,7 @@ extension Post: Decodable {
         likeCount = reactions?.likes
         dislikeCount = reactions?.dislikes
         
-        // Fake fields — 실제 API 교체 시 여기만 수정
+        // TODO: Fake fields — 추후수정
         name = "User \(userId)"
         imageURL = rawId % 3 == 0 ? nil : URL(string: "https://picsum.photos/seed/\(rawId)/400/300")
         let hours = rawId % 48

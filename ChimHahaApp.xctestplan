@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "7C9FE5CD-72B4-4104-9D0E-D8E3DE712BC4",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ChimHahaApp.xcodeproj",
+      "identifier" : "CC8D53AA2F4F464500F7BE89",
+      "name" : "ChimHahaApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:ChimHahaApp.xcodeproj",
+        "identifier" : "CC8D53B72F4F464800F7BE89",
+        "name" : "ChimHahaAppTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:ChimHahaApp.xcodeproj",
+        "identifier" : "CC8D53C12F4F464800F7BE89",
+        "name" : "ChimHahaAppUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
