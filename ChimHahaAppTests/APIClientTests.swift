@@ -9,16 +9,17 @@ final class APIClientTests: XCTestCase {
 
     func test_fetch_success_decodesPosts() async throws {
         let json = """
-        [{"id": "1", "userId": "1", "name": "테스터", "title": "Hello", "body": "World"}]
-        """.data(using: .utf8)!
-
+          [{"id": 1, "userId": 1, "title": "Hello", "body": "World", "reactions": {"likes": 10, "dislikes": 2}, "views": 100}]
+          """.data(using: .utf8)!
+        
         URLProtocolStub.stub(data: json, statusCode: 200)
         let client = APIClient(session: .stubbed)
-
+        
         let posts: [Post] = try await client.fetch(.posts)
-
-        XCTAssertEqual(posts.count, 1)
+        
         XCTAssertEqual(posts.first?.title, "Hello")
+        XCTAssertEqual(posts.first?.likeCount, 10)
+        XCTAssertEqual(posts.first?.viewCount, 100)
     }
 
     func test_fetch_requestFailed_throws404Error() async {

@@ -18,7 +18,7 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
+      "parallelizable" : false,
       "target" : {
         "containerPath" : "container:ChimHahaApp.xcodeproj",
         "identifier" : "CC8D53B72F4F464800F7BE89",
@@ -26,7 +26,6 @@
       }
     },
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:ChimHahaApp.xcodeproj",
         "identifier" : "CC8D53C12F4F464800F7BE89",

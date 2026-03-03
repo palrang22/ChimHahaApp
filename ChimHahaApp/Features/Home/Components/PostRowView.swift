@@ -30,7 +30,7 @@ struct PostRowView: View {
                             .foregroundStyle(.chimLabel)
                     }
                     
-                    if let commentCount = post.commentCount, commentCount > 0 {
+                    if let commentCount = post.commentCount {
                         Label("\(commentCount)", systemImage: "bubble.right")
                             .font(.chimCaption)
                             .foregroundStyle(.chimPrimary)
@@ -54,7 +54,7 @@ struct PostRowView: View {
             }
         }
         .padding(.horizontal, 16)
-        .padding(.vertical, 20)
+        .padding(.vertical, post.imageURL == nil ? 20 : 10)
     }
 }
 
@@ -90,6 +90,23 @@ struct PostRowView: View {
             likeCount: 36,
             dislikeCount: nil,
             commentCount: 10,
+            scrapCount: nil,
+            createdAt: "방금 전"
+        ))
+        Divider()
+        // 썸네일 없는 2줄
+        PostRowView(post: Post(
+            id: "3",
+            userId: "3",
+            name: "김철수",
+            title: "썸네일 없는 게시글 제목입니다 2줄짜리 우헤헤 썸네일 없는 게시글 제목입니다 2줄짜리 우헤헤 썸네일 없는 게시글 제목입니다 2줄짜리 우헤헤 썸네일 없는 게시글 제목입니다 2줄짜리 우헤헤",
+            body: "본문 내용",
+            imageURL: nil,
+            tags: nil,
+            viewCount: nil,
+            likeCount: 0,
+            dislikeCount: nil,
+            commentCount: 0,
             scrapCount: nil,
             createdAt: "방금 전"
         ))

@@ -80,13 +80,13 @@ After finishing a step, Claude Code will check off items and summarize what was 
 ## Step 4.5 — DummyJSON 마이그레이션
 > Goal: JSONPlaceholder → DummyJSON으로 교체해 좋아요·조회수·태그·유저명·이미지(fake)·날짜(fake) 데이터를 채운다.
 
-- [ ] `Endpoint.swift` — base URL을 `dummyjson.com`으로 변경, 응답 구조에 맞게 경로 수정
-- [ ] `Post.swift` — `likeCount`, `dislikeCount`, `viewCount`, `tags` 실제 데이터로 연결. `imageURL`은 picsum fake URL, `createdAt`은 fake 날짜 생성
-- [ ] `Comment.swift` — `name` 필드를 `user.fullName`으로 매핑, `likeCount` 연결
-- [ ] `PostRepositoryImpl.swift` — 페이지네이션 응답 wrapper(`posts: []`, `total:`) 처리
-- [ ] `CommentRepository.swift` + `CommentRepositoryImpl.swift` — 신규 작성 (댓글 fetch)
-- [ ] `PostRepositoryDependency.swift` — `commentRepository` dependency 추가
-- [ ] 기존 테스트 Mock 업데이트
+- [x] `Endpoint.swift` — base URL을 `dummyjson.com`으로 변경, 응답 구조에 맞게 경로 수정
+- [x] `Post.swift` — `likeCount`, `dislikeCount`, `viewCount`, `tags` 실제 데이터로 연결. `imageURL`은 picsum fake URL, `createdAt`은 fake 날짜 생성
+- [x] `Comment.swift` — `name` 필드를 `user.fullName`으로 매핑, `likeCount` 연결
+- [x] `PostRepositoryImpl.swift` — 페이지네이션 응답 wrapper(`posts: []`, `total:`) 처리
+- [x] `CommentRepository.swift` + `CommentRepositoryImpl.swift` — 신규 작성 (댓글 fetch)
+- [x] `PostRepositoryDependency.swift` — `commentRepository` dependency 추가
+- [x] 기존 테스트 Mock 업데이트
 
 **You'll learn:** 중첩 JSON 디코딩, 커스텀 `CodingKeys`, API 래퍼 타입 처리
 
