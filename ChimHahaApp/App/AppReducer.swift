@@ -26,6 +26,9 @@ struct AppReducer {
     }
     
     var body: some ReducerOf<Self> {
+        Scope(state: \.home, action: \.home) {
+            HomeReducer()
+        }
         Reduce { state, action in
             switch action {
             case let .tabSelected(tab):

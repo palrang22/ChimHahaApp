@@ -22,3 +22,27 @@ struct Post: Codable, Equatable, Identifiable {
     let scrapCount: Int?
     let createdAt: String?
 }
+
+
+extension Post {
+      enum CodingKeys: String, CodingKey {
+          case id, userId, title, body
+      }
+
+      init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          id = try String(container.decode(Int.self, forKey: .id))
+          userId = try String(container.decode(Int.self, forKey: .userId))
+          title = try container.decode(String.self, forKey: .title)
+          body = try container.decode(String.self, forKey: .body)
+          name = "User \(userId)"
+          imageURL = nil
+          tags = nil
+          viewCount = nil
+          likeCount = nil
+          dislikeCount = nil
+          commentCount = nil
+          scrapCount = nil
+          createdAt = nil
+      }
+  }
