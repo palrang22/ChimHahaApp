@@ -13,14 +13,12 @@ final class PostRepositoryImpl: PostRepository {
     }
 
     func fetchPosts() async throws -> [Post] {
-        try await client.fetch(.posts)
+        struct Response: Decodable { let posts: [Post] }
+        let response: Response = try await client.fetch(.posts)
+        return response.posts
     }
 
     func fetchPost(id: String) async throws -> Post {
         try await client.fetch(.post(id: id))
-    }
-
-    func fetchComments(postId: String) async throws -> [Comment] {
-        try await client.fetch(.comments(postId: postId))
     }
 }

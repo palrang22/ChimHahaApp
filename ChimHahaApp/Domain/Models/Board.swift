@@ -29,7 +29,7 @@ extension Board {
     static let popular = Board(
         id: "popular",
         name: "인기글",
-        description: "추천을 많이 받은 인기 게시글입니다.",
+        description: "추천 많이 받으면 올라갑니다.",
         emoji: "🔥",
         viewType: .list,
         section: nil

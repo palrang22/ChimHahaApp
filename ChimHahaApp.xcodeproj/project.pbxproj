@@ -28,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CC33D61C2F573F7500238A64 /* ChimHahaApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChimHahaApp.xctestplan; sourceTree = "<group>"; };
 		CC8D53AB2F4F464500F7BE89 /* ChimHahaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChimHahaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC8D53B82F4F464800F7BE89 /* ChimHahaAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChimHahaAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC8D53C22F4F464800F7BE89 /* ChimHahaAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChimHahaAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +81,7 @@
 		CC8D53A22F4F464500F7BE89 = {
 			isa = PBXGroup;
 			children = (
+				CC33D61C2F573F7500238A64 /* ChimHahaApp.xctestplan */,
 				CC8D53AD2F4F464500F7BE89 /* ChimHahaApp */,
 				CC8D53BB2F4F464800F7BE89 /* ChimHahaAppTests */,
 				CC8D53C52F4F464800F7BE89 /* ChimHahaAppUITests */,

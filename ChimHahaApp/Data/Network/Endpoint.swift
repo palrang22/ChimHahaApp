@@ -15,7 +15,7 @@ enum Endpoint {
     case users
     case user(id: String)
     
-    private static let baseURL = "https://jsonplaceholder.typicode.com"
+    private static let baseURL = "https://dummyjson.com"
     
     var url: URL? {
         switch self {
