@@ -20,6 +20,8 @@ struct HomeReducer {
         var errorMessage: String? = nil
         var selectedBoard: Board = .popular
         var filter: FeedFilter = .all
+        
+        var drawer: BoardDrawerReducer.State  = .init()
     }
     
     enum Action {
@@ -28,6 +30,8 @@ struct HomeReducer {
         case postTapped(Post)
         case filterChanged(FeedFilter)
         case boardChanged(Board)
+        
+        case drawer(BoardDrawerReducer.Action)
     }
     
     @Dependency(\.postRepository) var postRepository
@@ -65,6 +69,14 @@ struct HomeReducer {
                 
             case let .boardChanged(board):
                 state.selectedBoard = board
+                return .none
+                
+                
+            case let .drawer(.boardSelected(board)):
+                state.selectedBoard = board
+                return .none
+                
+            case .drawer:
                 return .none
             }
         }

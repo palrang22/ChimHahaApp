@@ -311,3 +311,15 @@ extension Board {
         allBoards.filter { $0.section == section }
     }
 }
+
+
+extension Board.Section {
+    var displayName: String {
+        switch self {
+        case .chimchakman: return "침착맨"
+        case .independent: return "독립 게시판"
+        case .guzzu: return "구쭈"
+        case .administrative: return "행정실"
+        }
+    }
+}
