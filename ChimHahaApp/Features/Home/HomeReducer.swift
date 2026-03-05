@@ -37,6 +37,11 @@ struct HomeReducer {
     @Dependency(\.postRepository) var postRepository
     
     var body: some ReducerOf<Self> {
+        
+        Scope(state: \.drawer, action: \.drawer) {
+            BoardDrawerReducer()
+        }
+        
         Reduce { state, action in
             switch action {
             case .onAppear:

@@ -66,7 +66,7 @@ struct BoardDrawerView: View {
                 Text(board.emoji)
                     .font(.system(size: 18))
                 Text(board.name)
-                    .font(.chimBody)
+                    .font(.chimBodySB)
                     .foregroundStyle(.chimLabel)
                 Spacer()
             }
@@ -79,10 +79,10 @@ struct BoardDrawerView: View {
     
     private func sectionLabel(text: String) -> some View {
         Text(text)
-            .font(.chimCaption)
-            .foregroundStyle(.chimLabel2)
+            .font(.chimBodySB)
+            .foregroundStyle(.chimLabel)
             .padding(.horizontal, 20)
-            .padding(.vertical, 10)
+            .padding(.vertical, 12)
     }
     
     private func boardRow(board: Board, showStar: Bool = false) -> some View {
@@ -92,14 +92,14 @@ struct BoardDrawerView: View {
             } label: {
                 HStack(spacing: 12) {
                     Text(board.emoji)
-                        .font(.system(size: 16))
+                        .font(.system(size: 18))
                     Text(board.name)
                         .font(.chimBody)
                         .foregroundStyle(.chimLabel)
                     Spacer()
                 }
                 .padding(.leading, 36)
-                .padding(.vertical, 10)
+                .padding(.vertical, 12)
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
@@ -137,7 +137,7 @@ struct BoardDrawerView: View {
                         .foregroundStyle(.chimLabel2)
                 }
                 .padding(.horizontal, 20)
-                .padding(.vertical, 14)
+                .padding(.vertical, 20)
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
@@ -152,3 +152,13 @@ struct BoardDrawerView: View {
         }
     }
 }
+
+
+
+#Preview {
+      BoardDrawerView(store: Store(
+          initialState: BoardDrawerReducer.State()
+      ) {
+          BoardDrawerReducer()
+      })
+  }

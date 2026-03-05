@@ -13,61 +13,79 @@ import ComposableArchitecture
 struct HomeView: View {
     @Bindable var store: StoreOf<HomeReducer>
     
+    private let drawerWidth: CGFloat = 300
+    
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.chimBG.ignoresSafeArea()
-                
-                if store.isLoading {
-                    ProgressView()
-                        .tint(.chimPrimary)
-                } else if let error = store.errorMessage {
-                    VStack(spacing: 12) {
-                        Text("오류가 발생했어요.")
-                            .font(.chimBody)
-                            .foregroundStyle(.chimLabel)
-                        Text(error)
-                            .font(.chimCaption)
-                            .foregroundStyle(.chimLabel2)
-                            .multilineTextAlignment(.center)
-                        Button("다시 시도") {
-                            store.send(.onAppear)
-                        }
-                        .foregroundStyle(.chimPrimary)
-                    }
-                    .padding()
-                } else {
-                    postList
-                }
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        
-                    } label: {
-                        HStack(spacing: 4) {
-                            Text("\(store.selectedBoard.emoji) \(store.selectedBoard.name)")
-                                .font(.chimBodySB)
+        ZStack(alignment: .leading) {
+            NavigationStack {
+                ZStack {
+                    Color.chimBG.ignoresSafeArea()
+                    
+                    if store.isLoading {
+                        ProgressView()
+                            .tint(.chimPrimary)
+                    } else if let error = store.errorMessage {
+                        VStack(spacing: 12) {
+                            Text("오류가 발생했어요.")
+                                .font(.chimBody)
                                 .foregroundStyle(.chimLabel)
-                            Image(systemName: "chevron.down")
+                            Text(error)
                                 .font(.chimCaption)
                                 .foregroundStyle(.chimLabel2)
+                                .multilineTextAlignment(.center)
+                            Button("다시 시도") {
+                                store.send(.onAppear)
+                            }
+                            .foregroundStyle(.chimPrimary)
+                        }
+                        .padding()
+                    } else {
+                        postList
+                    }
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            store.send(.drawer(.open), animation: .easeInOut(duration: 0.3))
+                        } label: {
+                            HStack(spacing: 4) {
+                                Text("\(store.selectedBoard.emoji) \(store.selectedBoard.name)")
+                                    .font(.chimBodySB)
+                                    .foregroundStyle(.chimLabel)
+                                Image(systemName: "chevron.down")
+                                    .font(.chimCaption)
+                                    .foregroundStyle(.chimLabel2)
+                            }
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "bell")
+                                .foregroundStyle(.chimLabel)
                         }
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "bell")
-                            .foregroundStyle(.chimLabel)
-                    }
-                }
             }
-        }
-        .onAppear {
-            store.send(.onAppear)
+            .onAppear {
+                store.send(.onAppear)
+            }
+            
+            Color.black
+                .opacity(store.drawer.isOpen ? 0.5 : 0)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    store.send(.drawer(.close), animation: .easeInOut(duration: 0.3))
+                }
+                .allowsHitTesting(store.drawer.isOpen)
+                .animation(.easeInOut(duration: 0.3), value: store.drawer.isOpen)
+            
+            BoardDrawerView(store: store.scope(state: \.drawer, action: \.drawer))
+                .frame(width: drawerWidth)
+                .offset(x: store.drawer.isOpen ? 0 : -drawerWidth)
+                .animation(.easeInOut(duration: 0.3), value: store.drawer.isOpen)
         }
     }
     
@@ -112,3 +130,12 @@ struct HomeView: View {
         .scrollIndicators(.hidden)
     }
 }
+
+
+#Preview {
+      HomeView(store: Store(
+          initialState: HomeReducer.State()
+      ) {
+          HomeReducer()
+      })
+  }
