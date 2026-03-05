@@ -64,14 +64,14 @@ struct BoardDrawerView: View {
         } label: {
             HStack(spacing: 12) {
                 Text(board.emoji)
-                    .font(.system(size: 18))
+                    .font(.system(size: 22))
                 Text(board.name)
                     .font(.chimBodySB)
                     .foregroundStyle(.chimLabel)
                 Spacer()
             }
             .padding(.horizontal, 20)
-            .padding(.vertical, 12)
+            .padding(.vertical, 16)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -79,10 +79,10 @@ struct BoardDrawerView: View {
     
     private func sectionLabel(text: String) -> some View {
         Text(text)
-            .font(.chimBodySB)
+            .font(.chimTitle2)
             .foregroundStyle(.chimLabel)
             .padding(.horizontal, 20)
-            .padding(.vertical, 12)
+            .padding(.vertical, 16)
     }
     
     private func boardRow(board: Board, showStar: Bool = false) -> some View {
@@ -92,14 +92,14 @@ struct BoardDrawerView: View {
             } label: {
                 HStack(spacing: 12) {
                     Text(board.emoji)
-                        .font(.system(size: 18))
+                        .font(.system(size: 22))
                     Text(board.name)
                         .font(.chimBody)
                         .foregroundStyle(.chimLabel)
                     Spacer()
                 }
-                .padding(.leading, 36)
-                .padding(.vertical, 12)
+                .padding(.leading, 20)
+                .padding(.vertical, 16)
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
@@ -129,7 +129,7 @@ struct BoardDrawerView: View {
             } label: {
                 HStack {
                     Text(section.displayName)
-                        .font(.chimBodySB)
+                        .font(.chimTitle2)
                         .foregroundStyle(.chimLabel)
                     Spacer()
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
