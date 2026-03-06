@@ -95,10 +95,10 @@ After finishing a step, Claude Code will check off items and summarize what was 
 ## Step 5 — Board Drawer
 > Goal: Tapping the board name slides in a drawer with the full board hierarchy.
 
-- [ ] `BoardDrawerReducer.swift`
+- [x] `BoardDrawerReducer.swift`
   - State: `isOpen: Bool`, `expandedSections: Set<String>`, `favorites: [Board.ID]`
   - Action: `open`, `close`, `toggleSection`, `toggleFavorite`, `boardSelected`
-- [ ] `BoardDrawerView.swift`
+- [x] `BoardDrawerView.swift`
   - Slides in from left with `.offset` + `withAnimation`
   - Dim overlay behind drawer (tap to close)
   - Top shortcuts: 🔥 인기글, 🏛️ 알렉산드리아, 🖼️ 박물관, 📋 전체글
@@ -106,7 +106,7 @@ After finishing a step, Claude Code will check off items and summarize what was 
   - Collapsible sections: 침착맨 / 독립 게시판 / 침하하 게임
   - Star (★) button per row to toggle favorites
   - 🪨 소원의 돌 pinned at bottom
-- [ ] Selecting a board updates `HomeReducer.selectedBoard` and closes drawer
+- [x] Selecting a board updates `HomeReducer.selectedBoard` and closes drawer
 
 **You'll learn:** `.offset`, `DragGesture`, `withAnimation`, `ZStack` layering, Parent–Child TCA Reducer
 
