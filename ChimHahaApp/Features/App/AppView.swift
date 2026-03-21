@@ -20,7 +20,7 @@ struct AppView: View {
             }
             
             Tab("검색", systemImage: "magnifyingglass", value: AppReducer.Tab.search) {
-                Text("검색")
+                SearchView(store: store.scope(state: \.search, action: \.search))
             }
             
             Tab("글쓰기", systemImage: "pencil", value: AppReducer.Tab.write) {
