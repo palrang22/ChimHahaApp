@@ -150,37 +150,35 @@ After finishing a step, Claude Code will check off items and summarize what was 
 ## Step 8 — Search
 > Goal: A functional search screen with board filter chips and real-time results.
 
-- [ ] `SearchReducer.swift`
+- [x] `SearchReducer.swift`
   - State: `query: String`, `results: [Post]`, `selectedBoard: Board?`, `isSearching: Bool`
   - Action: `queryChanged`, `boardFilterChanged`, `resultsResponse`
-- [ ] `SearchView.swift`
+- [x] `SearchView.swift`
   - Search text field (custom styled, not `searchable`)
   - Board filter chips (horizontal scroll)
   - Results list using `PostRowView`
   - Empty state and no-results state
-- [ ] `.debounce(id:for:clock:)` in TCA Effect to throttle search requests
-- [ ] `SearchReducerTests.swift`
+- [x] `.debounce(id:for:clock:)` in TCA Effect to throttle search requests
+- [x] `SearchReducerTests.swift`
 
 **You'll learn:** TCA `.debounce`, `Effect.run`, TCA search patterns, `FocusState`
 
 ---
 
-## Step 9 — Write Screen
-> Goal: A compose screen with board picker, title, body, and optional poll.
+## Step 9 — My Page
+> Goal: My Page screen with profile header and all menu items.
 
-- [ ] `WriteReducer.swift`
-  - State: `selectedBoard`, `title`, `body`, `poll: PollState?`, `isSubmitting`
-  - Action: `boardSelected`, `titleChanged`, `bodyChanged`, `togglePoll`, `addPollOption`, `removePollOption`, `submitTapped`
-- [ ] `WriteView.swift`
-  - Cancel / 등록 nav bar buttons (등록 disabled until title + board selected)
-  - Board picker dropdown
-  - Title `TextField`
-  - Body `TextEditor`
-  - Poll toggle section (add/remove options dynamically)
-  - Bottom toolbar (photo + format icons — UI only for now)
-- [ ] `WriteReducerTests.swift`
+- [ ] `MyPageReducer.swift`
+  - State: `user: User?`, `isLoggedIn: Bool`
+  - Action: `onAppear`, `userResponse`, `logoutTapped`, `wishingstoneTapped`
+- [ ] `MyPageView.swift`
+  - Profile header: avatar + username + points + 🪨 wishing stone button
+  - Grouped `List` sections (use `.listStyle(.insetGrouped)`)
+  - Navigation to sub-pages (stubs for now)
+  - Logout button (red, confirmation alert)
+- [ ] `MyPageReducerTests.swift`
 
-**You'll learn:** `TextEditor`, `@FocusState`, dynamic list of inputs, conditional sections in SwiftUI
+**You'll learn:** `.listStyle(.insetGrouped)`, `.confirmationDialog`, navigation from My Page into other features
 
 ---
 
@@ -203,20 +201,22 @@ After finishing a step, Claude Code will check off items and summarize what was 
 
 ---
 
-## Step 11 — My Page
-> Goal: My Page screen with profile header and all menu items.
+## Step 11 — Write Screen
+> Goal: A compose screen with board picker, title, body, and optional poll.
 
-- [ ] `MyPageReducer.swift`
-  - State: `user: User?`, `isLoggedIn: Bool`
-  - Action: `onAppear`, `userResponse`, `logoutTapped`, `wishingstoneTapped`
-- [ ] `MyPageView.swift`
-  - Profile header: avatar + username + points + 🪨 wishing stone button
-  - Grouped `List` sections (use `.listStyle(.insetGrouped)`)
-  - Navigation to sub-pages (stubs for now)
-  - Logout button (red, confirmation alert)
-- [ ] `MyPageReducerTests.swift`
+- [ ] `WriteReducer.swift`
+  - State: `selectedBoard`, `title`, `body`, `poll: PollState?`, `isSubmitting`
+  - Action: `boardSelected`, `titleChanged`, `bodyChanged`, `togglePoll`, `addPollOption`, `removePollOption`, `submitTapped`
+- [ ] `WriteView.swift`
+  - Cancel / 등록 nav bar buttons (등록 disabled until title + board selected)
+  - Board picker dropdown
+  - Title `TextField`
+  - Body `TextEditor`
+  - Poll toggle section (add/remove options dynamically)
+  - Bottom toolbar (photo + format icons — UI only for now)
+- [ ] `WriteReducerTests.swift`
 
-**You'll learn:** `.listStyle(.insetGrouped)`, `.confirmationDialog`, navigation from My Page into other features
+**You'll learn:** `TextEditor`, `@FocusState`, dynamic list of inputs, conditional sections in SwiftUI
 
 ---
 
