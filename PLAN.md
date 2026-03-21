@@ -137,11 +137,11 @@ After finishing a step, Claude Code will check off items and summarize what was 
 ## Step 7 — Grid View (알렉산드리아 짤 도서관)
 > Goal: Selecting 알렉산드리아 switches the home feed to a 3-column image grid.
 
-- [ ] `PostGridCellView.swift` — square image + title + likes + date
-- [ ] `HomeView` conditionally renders `LazyVGrid` when `selectedBoard.viewType == .grid`
-- [ ] `LazyVGrid` with 3 `GridItem(.flexible())` columns, 2pt gap
-- [ ] `AsyncImage` with placeholder shimmer/color
-- [ ] Tapping a grid cell navigates to `PostDetailView`
+- [x] `PostGridCellView.swift` — square image + title + likes + date
+- [x] `HomeView` conditionally renders `LazyVGrid` when `selectedBoard.viewType == .grid`
+- [x] `LazyVGrid` with 3 `GridItem(.flexible())` columns, 2pt gap
+- [x] `AsyncImage` with placeholder shimmer/color
+- [x] Tapping a grid cell navigates to `PostDetailView`
 
 **You'll learn:** `LazyVGrid`, `GridItem`, `AsyncImage`, `.aspectRatio`, conditional view switching in SwiftUI
 
