@@ -160,7 +160,7 @@ struct PostDetailView: View {
                 }
             }
             .background(.chimBG)
-            .scrollDismissesKeyboard(.interactively)
+            .scrollDismissesKeyboard(.immediately)
             .overlay(alignment: .bottomTrailing) {
                 VStack(spacing: 16) {
                     Button {

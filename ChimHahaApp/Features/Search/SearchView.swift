@@ -40,10 +40,10 @@ struct SearchView: View {
             .padding(.horizontal, 12)
             .padding(.vertical, 10)
             .background(Color.chimSurface2)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
             
             //검색창 가장자리 여백
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 10)
             .padding(.vertical, 12)
             
             Divider().overlay(.chimSeparator)
@@ -73,6 +73,7 @@ struct SearchView: View {
                         }
                     }
                 }
+                .scrollDismissesKeyboard(.immediately)
             }
         }
         .background(Color.chimBG.ignoresSafeArea())
