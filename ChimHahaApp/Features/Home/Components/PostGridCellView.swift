@@ -13,24 +13,28 @@ struct PostGridCellView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            AsyncImage(url: post.imageURL) { phase in
-                switch phase {
-                case .empty:
-                    Color(.chimSurface2)
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                case .failure:
-                    Color(.chimSurface2)
-                        .overlay {
-                            Image(systemName: "photo")
-                                .foregroundStyle(Color(.chimLabel3))
+            Color.clear
+                .aspectRatio(1, contentMode: .fit)
+                .overlay {
+                    AsyncImage(url: post.imageURL) { phase in
+                        switch phase {
+                        case .empty:
+                            Color(.chimSurface2)
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .scaledToFill()
+                        case .failure:
+                            Color(.chimSurface2)
+                                .overlay {
+                                    Image(systemName: "photo")
+                                        .foregroundStyle(Color(.chimLabel3))
+                                }
+                        @unknown default:
+                            Color(.chimSurface2)
                         }
-                @unknown default:
-                    Color(.chimSurface2)
+                    }
                 }
-            }
             .aspectRatio(1, contentMode: .fit)
             .clipped()
             .cornerRadius(4)
