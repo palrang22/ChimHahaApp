@@ -20,7 +20,7 @@ struct Post: Equatable, Identifiable {
     let dislikeCount: Int?
     let commentCount: Int?
     let scrapCount: Int?
-    let createdAt: String?
+    let createdAt: Date?
 }
 
 
@@ -51,8 +51,8 @@ extension Post: Decodable {
         // TODO: Fake fields — 추후수정
         name = "User \(userId)"
         imageURL = rawId % 3 == 0 ? nil : URL(string: "https://picsum.photos/seed/\(rawId)/400/300")
-        let hours = rawId % 48
-        createdAt = hours == 0 ? "방금 전" : "\(hours)시간 전"
+        let days = rawId % 30
+        createdAt = Calendar.current.date(byAdding: .day, value: -days, to: Date())
         commentCount = nil
         scrapCount = nil
     }

@@ -16,7 +16,7 @@ struct Comment: Equatable, Identifiable {
     let name: String
     let body: String
     let likeCount: Int?
-    let createdAt: String?
+    let createdAt: Date?
 }
 
 extension Comment: Decodable {
@@ -45,6 +45,6 @@ extension Comment: Decodable {
         // TODO: Fake fields - 추후수정
         parentId = nil
         let hours = rawId % 24
-        createdAt = hours == 0 ? "방금 전" : "\(hours)시간 전"
+        createdAt = Calendar.current.date(byAdding: .hour, value: -hours, to: Date())
     }
 }
