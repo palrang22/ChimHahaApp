@@ -28,8 +28,9 @@ struct PostDetailView: View {
                             .fill(Color.chimSurface2)
                             .frame(width: 40, height: 40)
                             .overlay(
-                                Image(systemName: "person.fill")
-                                    .foregroundStyle(.chimLabel)
+                                Image(.profile)
+                                    .resizable()
+                                    .scaledToFit()
                             )
                         
                         VStack(alignment: .leading, spacing: 2) {
@@ -83,6 +84,8 @@ struct PostDetailView: View {
                     .font(.chimBody)
                     .foregroundStyle(.chimLabel)
                     .padding()
+                    .lineSpacing(2)
+                    .tracking(0.2)
                 
                 // MARK: - Post Image
                 if let imageURL = store.post.imageURL {
@@ -101,8 +104,8 @@ struct PostDetailView: View {
                 // MARK: - Reaction Buttons
                 HStack(spacing: 32) {
                     Spacer()
-                    reactionButton(emoji: "👍", label: "침하하", systemImage: "hand.thumbsup.fill")
-                    reactionButton(emoji: "👎", label: "침흑흑", systemImage: "hand.thumbsdown.fill")
+                    reactionButton(emoji: "👍", label: "침하하")
+                    reactionButton(emoji: "👎", label: "침흑흑")
                     Spacer()
                 }
                 .padding(.vertical, 32)
@@ -154,7 +157,7 @@ struct PostDetailView: View {
             }
         }
         .background(.chimBG)
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline).toolbar(.hidden, for: .tabBar)
         .safeAreaInset(edge: .bottom) {
             // MARK: - Comment Input Bar
             HStack(spacing: 12) {
@@ -185,24 +188,24 @@ struct PostDetailView: View {
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
-            .background(.chimSurface)
+            .background(Color.chimSurface.ignoresSafeArea(edges: .bottom))
         }
         .onAppear {
             store.send(.onAppear)
         }
     }
     
-    private func reactionButton(emoji: String, label: String, systemImage: String) -> some View {
+    private func reactionButton(emoji: String, label: String) -> some View {
         Button {
             store.send(.likeTapped)
         } label: {
             VStack(spacing: 8) {
-                Image(systemName: systemImage)
-                    .font(.system(size: 20, weight: .medium))
-                    .foregroundStyle(.chimLabel)
+                Text(emoji)
+                    .font(.system(size: 30))
                 Text(label)
                     .font(.chimCaption)
-                    .foregroundStyle(.chimLabel2)
+                    .foregroundStyle(.chimLabel)
+                    .bold()
             }
             .frame(width: 80, height: 80)
             .background(Color.chimSurface)

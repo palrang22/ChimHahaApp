@@ -43,6 +43,20 @@ struct HomeView: View {
                         postList
                     }
                 }
+                .navigationDestination(isPresented: Binding(
+                    get: { store.selectedPost != nil },
+                    set: { if !$0 { store.send(.postDetailDismissed) } }
+                )) {
+                    if let post = store.selectedPost {
+                        PostDetailView(
+                            store: Store(
+                                initialState: PostDetailReducer.State(post: post)
+                            ) {
+                                PostDetailReducer()
+                            }
+                        )
+                    }
+                }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -101,7 +115,12 @@ struct HomeView: View {
             
             LazyVStack(spacing: 0) {
                 ForEach(store.posts) { post in
-                    PostRowView(post: post)
+                    Button {
+                        store.send(.postTapped(post))
+                    } label: {
+                        PostRowView(post: post)
+                    }
+                    .buttonStyle(.plain)
                     Divider()
                         .overlay(.chimSeparator)
                 }

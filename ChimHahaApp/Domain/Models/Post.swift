@@ -53,7 +53,7 @@ extension Post: Decodable {
         imageURL = rawId % 3 == 0 ? nil : URL(string: "https://picsum.photos/seed/\(rawId)/400/300")
         let days = rawId % 30
         createdAt = Calendar.current.date(byAdding: .day, value: -days, to: Date())
-        commentCount = nil
+        commentCount = rawId % 10 == 0 ? nil : rawId % 15 + 1
         scrapCount = nil
     }
 }

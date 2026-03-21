@@ -20,6 +20,7 @@ struct HomeReducer {
         var errorMessage: String? = nil
         var selectedBoard: Board = .popular
         var filter: FeedFilter = .all
+        var selectedPost: Post? = nil
         
         var drawer: BoardDrawerReducer.State  = .init()
     }
@@ -30,6 +31,7 @@ struct HomeReducer {
         case postTapped(Post)
         case filterChanged(FeedFilter)
         case boardChanged(Board)
+        case postDetailDismissed
         
         case drawer(BoardDrawerReducer.Action)
     }
@@ -65,7 +67,12 @@ struct HomeReducer {
                 state.errorMessage = error.localizedDescription
                 return .none
                 
-            case .postTapped:
+            case let .postTapped(post):
+                state.selectedPost = post
+                return .none
+                
+            case .postDetailDismissed:
+                state.selectedPost = nil
                 return .none
                 
             case let .filterChanged(filter):
@@ -75,7 +82,6 @@ struct HomeReducer {
             case let .boardChanged(board):
                 state.selectedBoard = board
                 return .none
-                
                 
             case let .drawer(.boardSelected(board)):
                 state.selectedBoard = board

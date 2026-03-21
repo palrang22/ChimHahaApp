@@ -115,19 +115,20 @@ After finishing a step, Claude Code will check off items and summarize what was 
 ## Step 6 — Post Detail + Comments
 > Goal: Tapping a post navigates to a detail screen with full content and comments.
 
-- [ ] `PostDetailReducer.swift`
+- [x] `PostDetailReducer.swift`
   - State: `post: Post`, `comments: [Comment]`, `isLoading: Bool`, `commentInput: String`
   - Action: `onAppear`, `commentsResponse`, `commentInputChanged`, `submitComment`, `likeTapped`
-- [ ] `PostDetailView.swift`
+- [x] `PostDetailView.swift`
   - Back button nav bar
   - Post title + author avatar + time + view count
   - Post body text
   - Image (full-width, if available)
-  - Action bar: like / comment / scrap / share
+  - Reaction buttons (침하하/침흑흑) + scrap + post navigation
   - `LazyVStack` comment list
   - Comment input bar pinned to bottom (`.safeAreaInset`)
-- [ ] `CommentRowView.swift`
-- [ ] `PostDetailReducerTests.swift`
+- [x] `CommentRowView.swift`
+- [x] `PostDetailReducerTests.swift`
+- [x] `HomeView` → `PostDetailView` 네비게이션 연결
 
 **You'll learn:** `NavigationStack`, `navigationDestination`, `LazyVStack`, `.safeAreaInset`, `ScrollViewReader`
 

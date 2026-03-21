@@ -27,13 +27,14 @@ struct PostRowView: View {
                     if let likeCount = post.likeCount {
                         Label("\(likeCount)", systemImage: "hand.thumbsup")
                             .font(.chimCaption)
-                            .foregroundStyle(.chimLabel)
+                            .foregroundStyle(.chimPrimary)
+                            .fontWeight(.bold)
                     }
                     
                     if let commentCount = post.commentCount {
                         Label("\(commentCount)", systemImage: "bubble.right")
                             .font(.chimCaption)
-                            .foregroundStyle(.chimPrimary)
+                            .foregroundStyle(.chimLabel)
                             .fontWeight(.bold)
                     }
                 }
