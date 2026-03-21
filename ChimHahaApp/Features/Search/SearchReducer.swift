@@ -65,7 +65,9 @@ struct SearchReducer {
                 state.query = query
                 return .run { [state] send in
                     let filtered = state.allPosts.filter { post in
-                        query.isEmpty || post.title.localizedCaseInsensitiveContains(query)
+                        query.isEmpty
+                        || post.title.localizedCaseInsensitiveContains(query)
+                        || post.body.localizedCaseInsensitiveContains(query)
                     }
                     await send(.resultsResponse(filtered))
                 }
@@ -76,7 +78,9 @@ struct SearchReducer {
                 let query = state.query
                 return .run { [state] send in
                     let filtered = state.allPosts.filter { post in
-                        let matchesQuery = query.isEmpty || post.title.localizedCaseInsensitiveContains(query)
+                        let matchesQuery = query.isEmpty
+                        || post.title.localizedCaseInsensitiveContains(query)
+                        || post.body.localizedCaseInsensitiveContains(query)
                         return matchesQuery
                     }
                     await send(.resultsResponse(filtered))
