@@ -28,7 +28,7 @@ struct AppView: View {
             }
             
             Tab("마이페이지", systemImage: "person", value: AppReducer.Tab.myPage) {
-                Text("마이페이지")
+                MyPageView(store: store.scope(state: \.mypage, action: \.mypage))
             }
         }
         .tint(Color.chimPrimary)

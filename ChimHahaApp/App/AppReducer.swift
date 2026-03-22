@@ -19,12 +19,14 @@ struct AppReducer {
         var selectedTab: Tab = .home
         var home: HomeReducer.State = HomeReducer.State()
         var search: SearchReducer.State = SearchReducer.State()
+        var mypage: MyPageReducer.State = MyPageReducer.State()
     }
     
     enum Action {
         case tabSelected(Tab)
         case home(HomeReducer.Action)
         case search(SearchReducer.Action)
+        case mypage(MyPageReducer.Action)
     }
     
     var body: some ReducerOf<Self> {
@@ -44,6 +46,8 @@ struct AppReducer {
             case .home:
                 return .none
             case .search:
+                return .none
+            case .mypage:
                 return .none
             }
         }
