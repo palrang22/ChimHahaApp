@@ -16,6 +16,10 @@ private enum CommentRepositoryKey: DependencyKey {
     static let liveValue: CommentRepository = CommentRepositoryImpl()
 }
 
+private enum UserRepositoryKey: DependencyKey {
+    static let liveValue: UserRepository = UserRepositoryImpl()
+}
+
 
 extension DependencyValues {
     var postRepository: PostRepository {
@@ -26,5 +30,10 @@ extension DependencyValues {
     var commentRepository: CommentRepository {
         get { self[CommentRepositoryKey.self] }
         set { self[CommentRepositoryKey.self] = newValue }
+    }
+    
+    var userRepository: UserRepository {
+        get { self[UserRepositoryKey.self] }
+        set { self[UserRepositoryKey.self] = newValue}
     }
 }
