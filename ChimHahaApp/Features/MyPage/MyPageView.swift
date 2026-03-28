@@ -147,7 +147,7 @@ struct MyPageView: View {
             store.send(.wishingStoneTapped)
         } label: {
             HStack(spacing: 4) {
-                Image(.wishingStone)
+                Image(.wishingStoneIcon)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 14, height: 14)
