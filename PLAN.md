@@ -168,15 +168,15 @@ After finishing a step, Claude Code will check off items and summarize what was 
 ## Step 9 — My Page
 > Goal: My Page screen with profile header and all menu items.
 
-- [ ] `MyPageReducer.swift`
+- [x] `MyPageReducer.swift`
   - State: `user: User?`, `isLoggedIn: Bool`
   - Action: `onAppear`, `userResponse`, `logoutTapped`, `wishingstoneTapped`
-- [ ] `MyPageView.swift`
+- [x] `MyPageView.swift`
   - Profile header: avatar + username + points + 🪨 wishing stone button
   - Grouped `List` sections (use `.listStyle(.insetGrouped)`)
   - Navigation to sub-pages (stubs for now)
   - Logout button (red, confirmation alert)
-- [ ] `MyPageReducerTests.swift`
+- [x] `MyPageReducerTests.swift`
 
 **You'll learn:** `.listStyle(.insetGrouped)`, `.confirmationDialog`, navigation from My Page into other features
 
@@ -201,22 +201,50 @@ After finishing a step, Claude Code will check off items and summarize what was 
 
 ---
 
-## Step 11 — Write Screen
-> Goal: A compose screen with board picker, title, body, and optional poll.
+## Step 11 — Write Screen (WKWebView + React + CKEditor 5)
+> Goal: A native Write tab that hosts a React+TS web editor built with CKEditor 5, communicating with Swift via WKWebView message bridge.
 
-- [ ] `WriteReducer.swift`
-  - State: `selectedBoard`, `title`, `body`, `poll: PollState?`, `isSubmitting`
-  - Action: `boardSelected`, `titleChanged`, `bodyChanged`, `togglePoll`, `addPollOption`, `removePollOption`, `submitTapped`
-- [ ] `WriteView.swift`
-  - Cancel / 등록 nav bar buttons (등록 disabled until title + board selected)
-  - Board picker dropdown
-  - Title `TextField`
-  - Body `TextEditor`
-  - Poll toggle section (add/remove options dynamically)
-  - Bottom toolbar (photo + format icons — UI only for now)
+### Phase A — React + CKEditor 5 Setup
+- [ ] Scaffold `ChimhahaEditor/` with Vite (react-ts template) at the repo root alongside the Xcode project
+- [ ] Install CKEditor 5 v43.2.0 (`ckeditor5` npm package)
+- [ ] `Editor.tsx` — wrap CKEditor 5 ClassicEditor with full toolbar config matching chimhaha.net (bold, italic, underline, strikethrough, font family with Korean fonts, font size, color, alignment, lists, indent, blockquote, hr, link, image, media embed, source editing, undo/redo)
+- [ ] `PollEditor.tsx` — poll toggle section (poll title input + dynamic option list with add/remove)
+- [ ] `TitleInput.tsx` — styled title text input above the editor
+- [ ] `bridge.ts` — JS side of Swift↔JS bridge (`postMessage` helpers + `window.editor` API for Swift to call in)
+- [ ] `App.tsx` — composes TitleInput + Editor + PollEditor, wires up bridge
+- [ ] Korean custom fonts loaded via `@font-face` in CSS (나눔고딕, 나눔명조, 메이플스토리, etc.)
+- [ ] Dark theme CSS matching chimBG (`#000000`) and chimSurface (`#1C1C1E`) design tokens
+- [ ] Deploy to Vercel — connect GitHub repo to Vercel project, confirm auto-deploy on push works
+
+**You'll learn:** React functional components, useState, useEffect, useRef, TypeScript props/interfaces, Vite build config, CKEditor 5 React integration
+
+### Phase B — WKWebView Integration (Swift)
+- [ ] `WriteReducer.swift` — State: `selectedBoard`, `isEditorReady`, `isSubmitting`; Action: `editorReady`, `webViewMessage(EditorMessage)`, `cancelTapped`, `boardSelected`
+- [ ] `EditorMessage.swift` — Codable struct for bridge message types (`ready`, `submit`, `requestImagePicker`)
+- [ ] `WriteView.swift` — hosts `EditorWebView` (WKWebView wrapper), nav bar with Cancel / 등록 buttons (등록 disabled until `isEditorReady`), board picker sheet
+- [ ] `EditorWebView.swift` — `UIViewRepresentable` wrapping `WKWebView`; sets up `WKScriptMessageHandler` for `chimEditor` message channel
+- [ ] `EditorWebView.swift` loads the editor from a remote URL:
+      Production → `https://chimhaha-editor.vercel.app`
+      Debug → `http://localhost:5173`
+      Controlled via a Swift compile-time DEBUG flag.
+- [ ] Add `NSAppTransportSecurity` exception for the Vercel domain in `Info.plist`
 - [ ] `WriteReducerTests.swift`
 
-**You'll learn:** `TextEditor`, `@FocusState`, dynamic list of inputs, conditional sections in SwiftUI
+**You'll learn:** WKWebView, UIViewRepresentable, WKScriptMessageHandler, remote URL loading, environment-based URL switching, bridging web↔native
+
+---
+
+## Step 11.5 — Vercel Deployment
+> Goal: ChimhahaEditor is live on Vercel and WKWebView loads it successfully.
+
+- [ ] Push `ChimhahaEditor/` to GitHub
+- [ ] Connect the repo to Vercel — set root directory to `ChimhahaEditor/`
+- [ ] Confirm auto-deploy triggers on `git push`
+- [ ] Verify the deployed URL loads correctly in Safari
+- [ ] Point `EditorWebView.swift` production URL to the live Vercel URL
+- [ ] Test on simulator: editor loads, bridge messages fire correctly
+
+**You'll learn:** Vercel deployment, CI/CD basics, environment-based URL switching in Swift
 
 ---
 
@@ -234,6 +262,8 @@ After finishing a step, Claude Code will check off items and summarize what was 
 
 ## How to Use This Plan with Claude Code
 
+Note: Step 11 has two phases (A = React/web, B = Swift). Work on Phase A in the ChimhahaEditor/ folder using VS Code or your preferred editor. Switch back to Xcode for Phase B.
+
 Start each step by saying:
 ```
 Let's work on Step N from PLAN.md.
@@ -248,3 +278,11 @@ and why we're using it this way?
 ```
 
 Then come back to Claude Code to continue building.
+
+---
+
+## Notes
+- Step 11 Phase A can be worked on in VS Code inside `ChimhahaEditor/`. Switch to Xcode for Phase B.
+- Feel free to add new steps, sub-steps, or new .md files as the project evolves.
+  New markdown files (e.g. `EDITOR.md`, `BRIDGE.md`) are welcome if a topic needs
+  more detailed documentation than fits in PLAN.md.
