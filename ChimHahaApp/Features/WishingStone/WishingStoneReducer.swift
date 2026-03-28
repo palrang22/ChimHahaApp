@@ -29,6 +29,7 @@ struct WishingStoneReducer {
         case wishesResponse(Result<[Wish], any Error>)
     }
     
+    //TODO: 실제 API 연결 전까지 더미데이터 사용
     // @Dependency(\.wishingStoneRepository) var wishingStoneRepository
     
     var body: some ReducerOf<Self> {
@@ -38,8 +39,8 @@ struct WishingStoneReducer {
                 state.isLoading = true
                 return .run { send in
                 //TODO: 실제 API 연결 전까지 더미데이터 사용
-//                    let dummies = Wish.dummies
-//                    awaint send(.wishesResponse(.success(dummies)))
+                    let dummies = Wish.dummies
+                    await send(.wishesResponse(.success(dummies)))
                 }
             case let .inputChanged(text):
                 state.inputText = text
