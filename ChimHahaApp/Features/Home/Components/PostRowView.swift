@@ -27,13 +27,14 @@ struct PostRowView: View {
                     if let likeCount = post.likeCount {
                         Label("\(likeCount)", systemImage: "hand.thumbsup")
                             .font(.chimCaption)
-                            .foregroundStyle(.chimLabel)
+                            .foregroundStyle(.chimPrimary)
+                            .fontWeight(.bold)
                     }
                     
                     if let commentCount = post.commentCount {
                         Label("\(commentCount)", systemImage: "bubble.right")
                             .font(.chimCaption)
-                            .foregroundStyle(.chimPrimary)
+                            .foregroundStyle(.chimLabel)
                             .fontWeight(.bold)
                     }
                 }
@@ -74,7 +75,7 @@ struct PostRowView: View {
             dislikeCount: 25,
             commentCount: 9,
             scrapCount: nil,
-            createdAt: "3시간 전"
+            createdAt: Calendar.current.date(byAdding: .hour, value: -3, to: Date())
         ))
         Divider()
         // 썸네일 없는 경우
@@ -91,7 +92,7 @@ struct PostRowView: View {
             dislikeCount: nil,
             commentCount: 10,
             scrapCount: nil,
-            createdAt: "방금 전"
+            createdAt: Calendar.current.date(byAdding: .minute, value: -5, to: Date())
         ))
         Divider()
         // 썸네일 없는 2줄
@@ -108,7 +109,7 @@ struct PostRowView: View {
             dislikeCount: nil,
             commentCount: 0,
             scrapCount: nil,
-            createdAt: "방금 전"
+            createdAt: Calendar.current.date(byAdding: .day, value: -10, to: Date())
         ))
     }
     .background(Color("chimBG"))

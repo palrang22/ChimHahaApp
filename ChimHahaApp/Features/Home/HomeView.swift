@@ -43,6 +43,20 @@ struct HomeView: View {
                         postList
                     }
                 }
+                .navigationDestination(isPresented: Binding(
+                    get: { store.selectedPost != nil },
+                    set: { if !$0 { store.send(.postDetailDismissed) } }
+                )) {
+                    if let post = store.selectedPost {
+                        PostDetailView(
+                            store: Store(
+                                initialState: PostDetailReducer.State(post: post)
+                            ) {
+                                PostDetailReducer()
+                            }
+                        )
+                    }
+                }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -99,12 +113,24 @@ struct HomeView: View {
                 filterChips
             }
             
-            LazyVStack(spacing: 0) {
-                ForEach(store.posts) { post in
-                    PostRowView(post: post)
-                    Divider()
-                        .overlay(.chimSeparator)
+            switch store.selectedBoard.viewType {
+            case .list:
+                LazyVStack(spacing: 0) {
+                    ForEach(store.posts) { post in
+                        Button {
+                            store.send(.postTapped(post))
+                        } label: {
+                            PostRowView(post: post)
+                        }
+                        .buttonStyle(.plain)
+                        Divider()
+                            .overlay(.chimSeparator)
+                    }
                 }
+            case .grid:
+                postGrid
+            case .wish:
+                EmptyView()
             }
         }
     }
@@ -128,6 +154,25 @@ struct HomeView: View {
             .padding(.vertical, 8)
         }
         .scrollIndicators(.hidden)
+    }
+    
+    private var postGrid: some View {
+        LazyVGrid(
+            columns: Array(
+                repeating: GridItem(.flexible(), spacing: 10),
+                count: 3
+            ), spacing: 10
+        ) {
+            ForEach(store.posts) { post in
+                Button {
+                    store.send(.postTapped(post))
+                } label: {
+                    PostGridCellView(post: post)
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(.horizontal, 10)
     }
 }
 
