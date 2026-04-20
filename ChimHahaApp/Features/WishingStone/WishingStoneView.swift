@@ -84,12 +84,12 @@ private struct PrayerInputSection: View {
     var body: some View {
         VStack(spacing: 8) {
             HStack(spacing: 12) {
-                TextField("기도 올리기",
+                TextField(store.todayPrayed ? "" : "기도 올리기",
                           text: $store.inputText.sending(\.inputChanged))
                 .foregroundStyle(store.todayPrayed ? .chimLabel3 : .chimLabel)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 14)
-                .background(.chimSurface)
+                .background(store.todayPrayed ? .chimLabel3 : .chimSurface)
                 .cornerRadius(10)
                 .focused($isFocused)
                 .disabled(store.todayPrayed)
@@ -225,7 +225,6 @@ private struct WishRowView: View {
                 Text(wish.body)
                     .font(.chimBody)
                     .foregroundStyle(.chimLabel2)
-                    .lineLimit(2)
             }
             .padding(.horizontal,16)
             .padding(.vertical, 12)
