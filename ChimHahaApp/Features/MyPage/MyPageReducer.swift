@@ -16,6 +16,7 @@ struct MyPageReducer {
         var user: User? = nil
         var isLoading: Bool = false
         var isLogoutAlertPresented: Bool = false
+        var isWishingStonePresented: Bool = false
     }
     
     enum Action {
@@ -25,6 +26,7 @@ struct MyPageReducer {
         case logoutConfirmed
         case logoutCancelled
         case wishingStoneTapped
+        case wishingStoneDismissed
     }
     
     @Dependency(\.userRepository) var userRepository
@@ -67,7 +69,11 @@ struct MyPageReducer {
                 return .none
                 
             case .wishingStoneTapped:
-                //TODO: WishingStone 연결
+                state.isWishingStonePresented = true
+                return .none
+                
+            case .wishingStoneDismissed:
+                state.isWishingStonePresented = false
                 return .none
             }
             
