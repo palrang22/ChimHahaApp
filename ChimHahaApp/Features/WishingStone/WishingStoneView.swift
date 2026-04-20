@@ -79,17 +79,23 @@ private struct StatItemView: View {
 
 private struct PrayerInputSection: View {
     @Bindable var store: StoreOf<WishingStoneReducer>
+    @FocusState private var isFocused: Bool
     
     var body: some View {
         VStack(spacing: 8) {
             HStack(spacing: 12) {
                 TextField("기도 올리기",
                           text: $store.inputText.sending(\.inputChanged))
-                .foregroundStyle(.chimLabel)
+                .foregroundStyle(store.todayPrayed ? .chimLabel3 : .chimLabel)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 14)
                 .background(.chimSurface)
                 .cornerRadius(10)
+                .focused($isFocused)
+                .disabled(store.todayPrayed)
+                .onChange(of: store.todayPrayed) {
+                    if store.todayPrayed { isFocused = false }
+                }
                 
                 Button {
                     store.send(.submitWish)
@@ -98,7 +104,11 @@ private struct PrayerInputSection: View {
                         Image(.iconBtnInsense)
                             .resizable()
                             .frame(width: 20, height: 20)
-                        Text("기도 올리기")
+                        if store.todayPrayed {
+                            Text("오늘 기도 완료!")
+                        } else {
+                            Text("기도 올리기")
+                        }
                     }
                     .font(.subheadline)
                     .fontWeight(.semibold)
