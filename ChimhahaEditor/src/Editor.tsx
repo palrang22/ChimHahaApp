@@ -26,6 +26,7 @@ export default function Editor({ onChange }: EditorProps) {
         <CKEditor
         editor={ClassicEditor}
         config={{
+            licenseKey: 'GPL',
             plugins: [
                 Essentials,
                 Bold, Italic, Underline, Strikethrough,

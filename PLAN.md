@@ -205,16 +205,16 @@ After finishing a step, Claude Code will check off items and summarize what was 
 > Goal: A native Write tab that hosts a React+TS web editor built with CKEditor 5, communicating with Swift via WKWebView message bridge.
 
 ### Phase A — React + CKEditor 5 Setup
-- [ ] Scaffold `ChimhahaEditor/` with Vite (react-ts template) at the repo root alongside the Xcode project
-- [ ] Install CKEditor 5 v43.2.0 (`ckeditor5` npm package)
-- [ ] `Editor.tsx` — wrap CKEditor 5 ClassicEditor with full toolbar config matching chimhaha.net (bold, italic, underline, strikethrough, font family with Korean fonts, font size, color, alignment, lists, indent, blockquote, hr, link, image, media embed, source editing, undo/redo)
-- [ ] `PollEditor.tsx` — poll toggle section (poll title input + dynamic option list with add/remove)
-- [ ] `TitleInput.tsx` — styled title text input above the editor
-- [ ] `bridge.ts` — JS side of Swift↔JS bridge (`postMessage` helpers + `window.editor` API for Swift to call in)
-- [ ] `App.tsx` — composes TitleInput + Editor + PollEditor, wires up bridge
-- [ ] Korean custom fonts loaded via `@font-face` in CSS (나눔고딕, 나눔명조, 메이플스토리, etc.)
-- [ ] Dark theme CSS matching chimBG (`#000000`) and chimSurface (`#1C1C1E`) design tokens
-- [ ] Deploy to Vercel — connect GitHub repo to Vercel project, confirm auto-deploy on push works
+- [x] Scaffold `ChimhahaEditor/` with Vite (react-ts template) at the repo root alongside the Xcode project
+- [x] Install CKEditor 5 v43.2.0 (`ckeditor5` npm package)
+- [x] `Editor.tsx` — wrap CKEditor 5 ClassicEditor with full toolbar config matching chimhaha.net (bold, italic, underline, strikethrough, font family with Korean fonts, font size, color, alignment, lists, indent, blockquote, hr, link, image, media embed, source editing, undo/redo)
+- [x] `PollEditor.tsx` — poll toggle section (poll title input + dynamic option list with add/remove)
+- [x] `TitleInput.tsx` — styled title text input above the editor
+- [x] `bridge.ts` — JS side of Swift↔JS bridge (`postMessage` helpers + `window.editor` API for Swift to call in)
+- [x] `App.tsx` — composes TitleInput + Editor + PollEditor, wires up bridge
+- [x] Korean custom fonts loaded via `@font-face` in CSS (나눔고딕, 나눔명조, 메이플스토리, etc.)
+- [x] Dark theme CSS matching chimBG (`#000000`) and chimSurface (`#1C1C1E`) design tokens
+- [x] Deploy to Vercel — connect GitHub repo to Vercel project, confirm auto-deploy on push works
 
 **You'll learn:** React functional components, useState, useEffect, useRef, TypeScript props/interfaces, Vite build config, CKEditor 5 React integration
 

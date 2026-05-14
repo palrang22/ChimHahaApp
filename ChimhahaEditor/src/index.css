@@ -1,131 +1,131 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap');
 
-  :root {
-    --chim-bg: #000000;
-    --chim-surface: #1c1c1e;
-    --chim-surface2: #2c2c2e;
-    --chim-primary: #00bcd4;
-    --chim-label: rgba(255, 255, 255, 1);
-    --chim-label2: rgba(255, 255, 255, 0.55);
-    --chim-separator: rgba(255, 255, 255, 0.08);
-  }
+:root {
+  --chim-bg: #000000;
+  --chim-surface: #1c1c1e;
+  --chim-surface2: #2c2c2e;
+  --chim-primary: #00bcd4;
+  --chim-label: rgba(255, 255, 255, 1);
+  --chim-label2: rgba(255, 255, 255, 0.55);
+  --chim-separator: rgba(255, 255, 255, 0.08);
+}
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  body {
-    background-color: var(--chim-bg);
-    color: var(--chim-label);
-    font-family: 'Nanum Gothic', sans-serif;
-  }
+body {
+  background-color: var(--chim-bg);
+  color: var(--chim-label);
+  font-family: 'Nanum Gothic', sans-serif;
+}
 
-  .app {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 16px;
-  }
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
 
-  /* 제목 입력 */
-  .title-input {
-    width: 100%;
-    background: var(--chim-surface2);
-    border: none;
-    border-radius: 8px;
-    padding: 12px 16px;
-    color: var(--chim-label);
-    font-size: 18px;
-    outline: none;
-  }
+/* 제목 입력 */
+.title-input {
+  width: 100%;
+  background: var(--chim-surface2);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--chim-label);
+  font-size: 18px;
+  outline: none;
+}
 
-  .title-input::placeholder {
-    color: var(--chim-label2);
-  }
+.title-input::placeholder {
+  color: var(--chim-label2);
+}
 
-  /* CKEditor 다크 테마 */
-  .ck.ck-editor__main > .ck-editor__editable {
-    background: var(--chim-surface) !important;
-    color: var(--chim-label) !important;
-    min-height: 200px;
-    border-color: var(--chim-separator) !important;
-  }
+/* CKEditor 다크 테마 */
+.ck.ck-editor__main > .ck-editor__editable {
+  background: var(--chim-surface) !important;
+  color: var(--chim-label) !important;
+  min-height: 200px;
+  border-color: var(--chim-separator) !important;
+}
 
-  .ck.ck-toolbar {
-    background: var(--chim-surface2) !important;
-    border-color: var(--chim-separator) !important;
-  }
+.ck.ck-toolbar {
+  background: var(--chim-surface2) !important;
+  border-color: var(--chim-separator) !important;
+}
 
-  .ck.ck-button {
-    color: var(--chim-label) !important;
-  }
+.ck.ck-button {
+  color: var(--chim-label) !important;
+}
 
-  /* 투표 */
-  .poll-toggle {
-    background: none;
-    border: 1px solid var(--chim-primary);
-    color: var(--chim-primary);
-    border-radius: 8px;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-size: 14px;
-  }
+/* 투표 */
+.poll-toggle {
+  background: none;
+  border: 1px solid var(--chim-primary);
+  color: var(--chim-primary);
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+}
 
-  .poll-body {
-    background: var(--chim-surface);
-    border-radius: 8px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+.poll-body {
+  background: var(--chim-surface);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-  .poll-title-input,
-  .poll-option-row input {
-    width: 100%;
-    background: var(--chim-surface2);
-    border: none;
-    border-radius: 6px;
-    padding: 10px 12px;
-    color: var(--chim-label);
-    outline: none;
-  }
+.poll-title-input,
+.poll-option-row input {
+  width: 100%;
+  background: var(--chim-surface2);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--chim-label);
+  outline: none;
+}
 
-  .poll-option-row {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
+.poll-option-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
 
-  .poll-option-row button {
-    background: none;
-    border: none;
-    color: var(--chim-label2);
-    cursor: pointer;
-    font-size: 16px;
-  }
+.poll-option-row button {
+  background: none;
+  border: none;
+  color: var(--chim-label2);
+  cursor: pointer;
+  font-size: 16px;
+}
 
-  .poll-add-option {
-    background: none;
-    border: none;
-    color: var(--chim-primary);
-    cursor: pointer;
-    font-size: 14px;
-    text-align: left;
-    padding: 4px 0;
-  }
+.poll-add-option {
+  background: none;
+  border: none;
+  color: var(--chim-primary);
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  padding: 4px 0;
+}
 
-  /* 등록 버튼 */
-  .submit-btn {
-    background: var(--chim-primary);
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%;
-  }
+/* 등록 버튼 */
+.submit-btn {
+  background: var(--chim-primary);
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
