@@ -38,6 +38,10 @@ struct AppReducer {
             SearchReducer()
         }
         
+        Scope(state: \.mypage, action: \.mypage) {
+            MyPageReducer()
+        }
+        
         Reduce { state, action in
             switch action {
             case let .tabSelected(tab):

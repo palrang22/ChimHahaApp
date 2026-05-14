@@ -185,17 +185,17 @@ After finishing a step, Claude Code will check off items and summarize what was 
 ## Step 10 — Wishing Stone (소원의 돌)
 > Goal: Implement the fully custom Wishing Stone screen.
 
-- [ ] `WishingStoneReducer.swift`
+- [x] `WishingStoneReducer.swift`
   - State: `wishes: [Wish]`, `inputText: String`, `todayPrayed: Bool`
   - Action: `onAppear`, `inputChanged`, `submitWish`, `wishesResponse`
-- [ ] `WishingStoneView.swift`
+- [x] `WishingStoneView.swift`
   - Circular stone with radial gradient + reflection
   - Stats row (prayer date, attendance, points) — 3-column card
   - Input field + submit button + "오늘 기도 완료" badge
   - Wavy SVG divider (drawn with `Path` or `Shape`)
   - Ranked wish list with triangle rank badge
-- [ ] Accessible from both board drawer (bottom) and My Page profile header
-- [ ] `WishingStoneReducerTests.swift`
+- [x] Accessible from both board drawer (bottom) and My Page profile header
+- [x] `WishingStoneReducerTests.swift`
 
 **You'll learn:** `Path`, custom `Shape`, `Canvas`, radial `LinearGradient`, TCA navigation from multiple entry points
 

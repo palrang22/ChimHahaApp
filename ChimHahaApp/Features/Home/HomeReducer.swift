@@ -21,6 +21,7 @@ struct HomeReducer {
         var selectedBoard: Board = .popular
         var filter: FeedFilter = .all
         var selectedPost: Post? = nil
+        var isWishingStonePresented: Bool = false
         
         var drawer: BoardDrawerReducer.State  = .init()
     }
@@ -32,6 +33,7 @@ struct HomeReducer {
         case filterChanged(FeedFilter)
         case boardChanged(Board)
         case postDetailDismissed
+        case wishingStoneDismissed
         
         case drawer(BoardDrawerReducer.Action)
     }
@@ -84,7 +86,16 @@ struct HomeReducer {
                 return .none
                 
             case let .drawer(.boardSelected(board)):
-                state.selectedBoard = board
+                state.drawer.isOpen = false
+                if board.viewType == .wish {
+                    state.isWishingStonePresented = true
+                } else {
+                    state.selectedBoard = board
+                }
+                return .none
+                
+            case .wishingStoneDismissed:
+                state.isWishingStonePresented = false
                 return .none
                 
             case .drawer:

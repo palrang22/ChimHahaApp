@@ -55,6 +55,18 @@ struct MyPageView: View {
             .listStyle(.insetGrouped)
             .scrollContentBackground(.hidden)
             .background(Color.chimBG)
+            .navigationDestination(
+                isPresented: Binding(
+                    get: { store.isWishingStonePresented },
+                    set: { if !$0 { store.send(.wishingStoneDismissed) } }
+                ),
+            ) {
+                WishingStoneView(
+                    store: Store(initialState: WishingStoneReducer.State()) {
+                        WishingStoneReducer()
+                    }
+                )
+            }
         }
         .onAppear {
             store.send(.onAppear)
@@ -147,7 +159,7 @@ struct MyPageView: View {
             store.send(.wishingStoneTapped)
         } label: {
             HStack(spacing: 4) {
-                Image(.wishingStone)
+                Image(.wishingStoneIcon)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 14, height: 14)

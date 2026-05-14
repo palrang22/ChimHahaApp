@@ -57,6 +57,16 @@ struct HomeView: View {
                         )
                     }
                 }
+                .navigationDestination(isPresented: Binding(
+                     get: { store.isWishingStonePresented },
+                     set: { if !$0 { store.send(.wishingStoneDismissed) } }
+                 )) {
+                     WishingStoneView(
+                         store: Store(initialState: WishingStoneReducer.State()) {
+                             WishingStoneReducer()
+                         }
+                     )
+                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
